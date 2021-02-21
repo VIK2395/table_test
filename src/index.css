@@ -68,7 +68,7 @@ th.asc::before {
 .cell-content-wrapper {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .product {

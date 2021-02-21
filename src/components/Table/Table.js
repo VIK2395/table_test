@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import TableRow from "./TableRow";
 import TableHeaderRow from "./TableHeaderRow";
-import tableData from "../utils/tableData";
-import regExpFromString from "../utils/regExpFromString";
+import regExpFromString from "../../utils/regExpFromString";
 
-const Table = () => {
+const Table = ({columns, tableData}) => {
   const [sortedTableData, setSortedTableData] = useState(tableData);
   const [filteredTableData, setFilteredTableData] = useState(sortedTableData);
 
@@ -18,13 +17,13 @@ const Table = () => {
       const B = typeof b[key] === "string" ? b[key].toLowerCase() : b[key];
 
       if (order === "asc") {
-        if (A < B) return -1
-        if (A > B) return 1
+        if (A < B) return -1;
+        if (A > B) return 1;
       }
 
       if (order === "desc") {
-        if (A > B) return -1
-        if (A < B) return 1
+        if (A > B) return -1;
+        if (A < B) return 1;
       }
 
       return 0;
@@ -60,9 +59,14 @@ const Table = () => {
           sortData={sortData}
           filterData={filterData}
           sortedTableData={sortedTableData}
+          columns={columns}
         />
         {filteredTableData.map((tableRowData) => (
-          <TableRow key={tableRowData.id} tableRowData={tableRowData} />
+          <TableRow
+            key={tableRowData.id}
+            tableRowData={tableRowData}
+            columns={columns}
+          />
         ))}
       </tbody>
     </table>
